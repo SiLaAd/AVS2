@@ -135,8 +135,7 @@
             
         }
         
-            function numRows(table_id) {
-      
+     function numRows(table_id) {
      var rows = document.getElementById(table_id).getElementsByTagName('tr');
      var numRows = 0;
      for (i = 0; i < rows.length; i++) {
@@ -144,16 +143,29 @@
      }
      return numRows;
      }
-        
+
+     
+     function deleteTable(table_id){
+         var lastRow = numRows(table_id);
+         
+         for (i = 2; i <= lastRow;i=i+1) {
+         document.getElementById(table_id).deleteRow(i);
+     }
+     
+ }  
+     function getButton(){
+            var e = window.event,
+             btn = e.target || e.srcElement;
+             return (btn.id);
+        }
         
         /*
          * Löscht die Textdateien der registrierten Nutzer.
          * Wird im Feld User ein Name angegeben, wird nur der angegebene User gelsöcht.
          * Wird das Feld User freigelassen, werden alle Nutzer gelöscht.
          */
-        function deleteSingleData(){
-            
-            var username = document.getElementById("username").id;
+        function deleteSingleData(){ 
+            var username = getButton();
             write2console(username);
         
             var URL = "http://localhost/AVS/deleteData.php";
@@ -166,6 +178,8 @@
             });
             
             ajaxCom.disconnect();
+            deleteTable('userTable');
+            queryData('userTable');
 	}
         
         
