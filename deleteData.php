@@ -13,31 +13,26 @@ function deleteFile($username){
     $filepath = "./user/";
     
     if (file_exists ($filepath."$username.txt")){
-		if(unlink($filepath."$username.txt")){
-                    echo ("Benutzer $username wurde erfolgreich gelöscht.");
-		} elseif(empty($username)) {
-                    deleteAllFiles();
-		} else {
-                    echo ("Fehler beim Löschen von $username.");
-                }
-		
-	} else {
-		echo("Benutzer existiert nicht.");
+        if(unlink($filepath."$username.txt")){
+            echo ("Benutzer $username wurde erfolgreich gelöscht.");
+        } else {
+            echo ("Fehler beim Löschen von $username.");
+        }	
+    } else {
+	deleteAllFiles();
     }
 }
 
 function deleteAllFiles() {
     $filepath = "./user/"; 
     $path = opendir($filepath); 
-  
-    while ($file = readdir ($path)){
+    
+    while ($file = readdir($path)){
         if($file != "." && $file != ".."){ 
-            ($path.$file);
-        } 
+            unlink($filepath.$file);
+        }
     } 
     
     echo ("Alle Nutzer wurden gelöscht.");
     closedir($path);  
 }
-
-?>
