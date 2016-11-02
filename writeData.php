@@ -11,4 +11,3 @@ function createFile($username, $ipAdress){
         fclose($datei);
     }
 }
-//test
