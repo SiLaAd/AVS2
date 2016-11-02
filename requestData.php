@@ -5,15 +5,17 @@ $path = opendir($filepath);
 
 while ($file = readdir($path)){
         if($file != "." && $file != ".."){ 
-            $files[] = $filepath.$file;
+            $fileextensions = array(".", "txt");
+            $fileWoEx[] = str_replace($fileextensions, "", $file);
+            $files[] = $file;
         }
     } 
 
 foreach($files as $file){
-    $content[] = fread(fopen($file, 'r'), filesize($file));
+    $content[] = fread(fopen($filepath.$file, 'r'), filesize($filepath.$file));
 }
 
 echo json_encode(array(
-    'files'=> $files,
+    'files'=> $fileWoEx,
     'content'=> $content
     ));
