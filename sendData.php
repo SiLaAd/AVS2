@@ -1,5 +1,6 @@
 <?php
 
+// Auslesen der übertragenen POST-Daten
 if(isset($_POST['username'])) {
    $username= $_POST['username'];
 } else {
@@ -24,6 +25,7 @@ if(isset($_POST['ipAdress'])) {
    $ipAdress= 'ipAdress not delivered';
 }
 
+// Einbinden des Scripts zum Erstellen der Textdateien
 include('writedata.php');
 createFile($username, $ipAdress);
 

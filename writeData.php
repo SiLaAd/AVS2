@@ -1,5 +1,9 @@
 <?php
 
+/*
+ * Erstellt eine Textdatei mit dem Inhalt des Parameters $username
+ * In die Textdatei wird der Inhalt des Parameters $ipAdress geschrieben und gespeichert
+ */
 function createFile($username, $ipAdress){
     $filepath = './user/';
     

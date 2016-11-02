@@ -25,6 +25,11 @@
 
 
     <script type="text/javascript">
+        
+        /*
+         * Generiert eine zufällige IP als Dummy-Daten
+         * @returns {String}    zufällig generierte IP Adresse
+         */
         function generateRanIp() {
             var ipAdresse =  Math.round(Math.random() * (256 - 1) + 1) + "." 
                     + Math.round(Math.random() * (256 - 1) + 1) + "." 
@@ -33,20 +38,16 @@
             return ipAdresse;
         }
 
-
+        /*
+         * Speichert die übertragenen Daten in Textdateien.
+         * Jeder Nutzer bekommt eine eigene Textdatei, in der die IP hinterlegt wird.
+         * Anschließend werden die Daten auf der Konsole ausgegeben.
+         */
         function registerData(){
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
             var pcName = "Client" + "_" + Math.round(Math.random() * (10000 - 1) + 10000);
             var ipAdress = generateRanIp();
-
-            /*
-            write2console(username);
-            write2console(password);
-            write2console(pcName);
-            write2console(ipAdress);
-            */
-
 
             var URL = "http://localhost/AVS/sendData.php";
             var ajaxCom= new Ajax(URL,receive);
@@ -87,7 +88,11 @@
             ajaxCom.disconnect();
         }
         
-        
+        /*
+         * Löscht die Textdateien der registrierten Nutzer.
+         * Wird im Feld User ein Name angegeben, wird nur der angegebene User gelsöcht.
+         * Wird das Feld User freigelassen, werden alle Nutzer gelöscht.
+         */
         function deleteData(){
             var username = document.getElementById("username").value;
             var URL = "http://localhost/AVS/deleteData.php";

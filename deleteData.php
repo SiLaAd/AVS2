@@ -1,13 +1,19 @@
 <?php
+// auslesen des zu löschenden Users aus den POST-Daten
 if(isset($_POST['username'])) {
    $username= $_POST['username'];
 } else {
    $username= '';
 }
 
+// Aufruf der Funktion zum Löschen des betreffenden Users
 deleteFile($username);
 
-
+/*
+ * Die Textdatei mit dem Namen $username wird gelöscht
+ * Damit wird der Nutzer vom Repositoryserver entfernt
+ * Wenn $username leer ist, wird die Funktion deleteAllFiles(); aufgerufen
+ */
 function deleteFile($username){
     
     $filepath = "./user/";
@@ -23,6 +29,10 @@ function deleteFile($username){
     }
 }
 
+/*
+ * Löscht allt Textdateien aus dem User-Verzeichnis
+ * Damit werden alle Nutzer vom Repositoryserver entfernt
+ */
 function deleteAllFiles() {
     $filepath = "./user/"; 
     $path = opendir($filepath); 
