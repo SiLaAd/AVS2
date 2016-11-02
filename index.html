@@ -21,6 +21,7 @@
 
     <button type="button" onclick="register();">Register</button>
     <button type="button" onclick=queryData();>Query</button>
+    <button type="button" onclick="deleteData();">Delete</button>
 
 
     <script type="text/javascript">
@@ -85,6 +86,21 @@
             
             ajaxCom.disconnect();
         }
+        
+        
+        function deleteData(){
+            var username = document.getElementById("username").value;
+            var URL = "http://localhost/Aufgabe1/deleteData.php";
+            var ajaxCom= new Ajax(URL,receive);
+            
+            // expected components (checked in receive())
+            receivedObj= {"username" : 0};
+            ajaxCom.send({
+                "username": username,
+            });
+            
+            ajaxCom.disconnect();
+	}
     </script>
 
 </body>
