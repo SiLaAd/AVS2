@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="js/Ajax.js"></script>
+    <script src="js/Writer.js"></script>
+    <title>Aufgabe 1</title>
+</head>
+
+<body>
+   
+
+    User:
+    <input type="text" name="username" id="username" />
+    <br><br>
+
+    Passwort:
+    <input type="text" name="password" id="password" />
+    <br><br>       
+
+    <button type="button" onclick="register();">Register</button>
+    <button type="button" onclick=queryData();>Query</button>
+
+
+    <script type="text/javascript">
+        function generateRanIp() {
+            var ipAdresse =  Math.round(Math.random() * (256 - 1) + 1) + "." 
+                    + Math.round(Math.random() * (256 - 1) + 1) + "." 
+                    + Math.round(Math.random() * (256 - 1) + 1) + "." 
+                    + Math.round(Math.random() * (256 - 1) + 1);
+            return ipAdresse
+        }
+
+
+        function register(){
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var pcName = "Client" + "_" + Math.round(Math.random() * (10000 - 1) + 10000);
+            var ipAdress = generateRanIp();
+
+            /*
+            write2console(username);
+            write2console(password);
+            write2console(pcName);
+            write2console(ipAdress);
+            */
+
+
+            var URL = "http://localhost/Aufgabe1/sendData.php";
+            var ajaxCom= new Ajax(URL,receive);
+            // expected components (checked in receive())
+            receivedObj= {"username" : 0, "password" : 0, "ipAdress" : 0, "pcName" : 0};
+            ajaxCom.send({
+                "username": username,
+                "password": password,
+                "ipAdress": ipAdress,
+                "pcName": pcName
+            }
+            );
+            
+            write2console(receivedObj.username);
+            write2console(receivedObj.password);
+            write2console(receivedObj.ipAdress);
+            write2console(receivedObj.pcName);
+            
+            ajaxCom.disconnect();
+        }
+       
+        /*
+         * Funktion zum Abruf des Serverarrays. Diese Funktion liefert alle angemeldeten Server.
+         */
+        function queryData(){
+            var files;
+            var URL = "http://localhost/Aufgabe1/requestData.php";
+            var ajaxCom= new Ajax(URL,receive);
+            // expected components (checked in receive())
+            receivedObj= {"files" : 0};
+            ajaxCom.send({
+                "files": files
+            }
+            );
+            
+            write2console(receivedObj.files);
+            
+            ajaxCom.disconnect();
+        }
+    </script>
+
+</body>
+
+</html>
