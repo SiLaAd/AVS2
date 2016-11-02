@@ -16,18 +16,18 @@ deleteFile($username);
  */
 function deleteFile($username){
     
-//    $filepath = "./user/";
-//    
-//    if (file_exists ($filepath."$username.txt")){
-//        if(unlink($filepath."$username.txt")){
-//            echo ("Benutzer $username wurde erfolgreich gelöscht.");
-//        } else {
-//            echo ("Fehler beim Löschen von $username.");
-//        }	
-//    } else {
+    $filepath = "./user/";
+    
+    if (file_exists ($filepath."$username.txt")){
+        if(unlink($filepath."$username.txt")){
+            echo ("Benutzer $username wurde erfolgreich gelöscht.");
+        } else {
+            echo ("Fehler beim Löschen von $username.");
+        }	
+    } else {
 	deleteAllFiles();
     }
-
+}
 
 /*
  * Löscht allt Textdateien aus dem User-Verzeichnis
