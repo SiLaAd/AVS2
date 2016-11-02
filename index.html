@@ -21,7 +21,7 @@
 
     <button type="button" onclick="registerData();">Register</button>
     <button type="button" onclick=queryData();>Query</button>
-    <button type="button" onclick="deleteData();">Delete</button>
+    <button type="button" onclick="deleteData();">Delete all</button>
 
 
     <script type="text/javascript">
@@ -74,16 +74,19 @@
          */
         function queryData(){
             var files;
+            var content;
             var URL = "http://localhost/AVS/requestData.php";
             var ajaxCom= new Ajax(URL,receive);
             // expected components (checked in receive())
-            receivedObj= {"files" : 0};
+            receivedObj= {"files" : 0, "content" : 0};
             ajaxCom.send({
-                "files": files
+                "files": files,
+                "content": content
             }
             );
             
             write2console(receivedObj.files);
+            write2console(receivedObj.content);
             
             ajaxCom.disconnect();
         }
