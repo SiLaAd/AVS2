@@ -1,4 +1,5 @@
 <?php
+
 if(isset($_POST['username'])) {
    $username= $_POST['username'];
 } else {
@@ -25,7 +26,6 @@ if(isset($_POST['ipAdress'])) {
 
 include('writedata.php');
 createFile($username, $ipAdress);
-
 
 $data = array('username'=> $username);
 
