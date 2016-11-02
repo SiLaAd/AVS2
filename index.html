@@ -19,7 +19,7 @@
     <input type="text" name="password" id="password" />
     <br><br>       
 
-    <button type="button" onclick="register();">Register</button>
+    <button type="button" onclick="registerData();">Register</button>
     <button type="button" onclick=queryData();>Query</button>
     <button type="button" onclick="deleteData();">Delete</button>
 
@@ -30,11 +30,11 @@
                     + Math.round(Math.random() * (256 - 1) + 1) + "." 
                     + Math.round(Math.random() * (256 - 1) + 1) + "." 
                     + Math.round(Math.random() * (256 - 1) + 1);
-            return ipAdresse
+            return ipAdresse;
         }
 
 
-        function register(){
+        function registerData(){
             var username = document.getElementById("username").value;
             var password = document.getElementById("password").value;
             var pcName = "Client" + "_" + Math.round(Math.random() * (10000 - 1) + 10000);
@@ -48,7 +48,7 @@
             */
 
 
-            var URL = "http://localhost/Aufgabe1/sendData.php";
+            var URL = "http://localhost/AVS/sendData.php";
             var ajaxCom= new Ajax(URL,receive);
             // expected components (checked in receive())
             receivedObj= {"username" : 0, "password" : 0, "ipAdress" : 0, "pcName" : 0};
@@ -73,7 +73,7 @@
          */
         function queryData(){
             var files;
-            var URL = "http://localhost/Aufgabe1/requestData.php";
+            var URL = "http://localhost/AVS/requestData.php";
             var ajaxCom= new Ajax(URL,receive);
             // expected components (checked in receive())
             receivedObj= {"files" : 0};
@@ -90,13 +90,13 @@
         
         function deleteData(){
             var username = document.getElementById("username").value;
-            var URL = "http://localhost/Aufgabe1/deleteData.php";
+            var URL = "http://localhost/AVS/deleteData.php";
             var ajaxCom= new Ajax(URL,receive);
             
             // expected components (checked in receive())
             receivedObj= {"username" : 0};
             ajaxCom.send({
-                "username": username,
+                "username": username
             });
             
             ajaxCom.disconnect();
