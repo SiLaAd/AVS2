@@ -24,11 +24,11 @@ deleteFile($username, $password);
 function deleteFile($username, $password) {
 
     $filepath = "./user/";
-
-    if (file_exists($filepath . "$username$password.txt")) {
+    $hstring="_";
+    if (file_exists($filepath . "$username$hstring$password.txt")) {
         deleteAllFiles();
     } else {
-        echo ("Fehler beim Löschen von $username. Sie sind nicht berechtigt.");
+        echo ("Fehler beim Löschen. Sie sind nicht berechtigt.");
     }
 }
 

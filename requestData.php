@@ -14,7 +14,8 @@ if (isset($_POST['password'])) {
 }
 
 $filepath = "./user/";
-if (file_exists($filepath . "$username$password.txt")) {
+$hstring = "_";
+if (file_exists($filepath . "$username$hstring$password.txt")) {
     requestData();
 } else {
     echo ("Fehler beim Abrufen der Daten. Sie sind nicht berechtigt.");
@@ -27,7 +28,8 @@ function requestData() {
     while ($file = readdir($path)) {
         if ($file != "." && $file != "..") {
             $fileextensions = array(".", "txt");
-            $fileWoEx[] = str_replace($fileextensions, "", $file);
+            $file2=strtok($file, '_');
+            $fileWoEx[] = str_replace($fileextensions, "", $file2);
             $files[] = $file;
         }
     }
