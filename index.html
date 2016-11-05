@@ -87,9 +87,13 @@
                 var content;
                 var URL = "http://localhost/AVS/requestData.php";
                 var ajaxCom = new Ajax(URL, receive);
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
                 // expected components (checked in receive())
                 receivedObj = {"files": 0, "content": 0};
                 ajaxCom.send({
+                    "username": username,
+                    "password": password,
                     "files": files,
                     "content": content
                 }
@@ -150,10 +154,10 @@
             function deleteTable(table_id) {
                 var lastRow = numRows(table_id) - 1;
                 console.log(lastRow);
-                var i = 1;
-                while (i < lastRow) {
+                var i = 2;
+                while (i <= lastRow) {
                     document.getElementById(table_id).deleteRow(i);
-                    i++;
+                    i+2;
                 }
                 //console.log(lastRow);
                 //console.log(i);
@@ -220,13 +224,15 @@
              */
             function deleteData() {
                 var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
                 var URL = "http://localhost/AVS/deleteData.php";
                 var ajaxCom = new Ajax(URL, receive);
 
                 // expected components (checked in receive())
-                receivedObj = {"username": 0};
+                receivedObj = {"username": 0, "password": 0};
                 ajaxCom.send({
-                    "username": username
+                    "username": username,
+                    "password": password
                 });
 
                 ajaxCom.disconnect();

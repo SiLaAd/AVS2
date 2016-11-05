@@ -1,39 +1,39 @@
 <?php
 
 // Auslesen der übertragenen POST-Daten
-if(isset($_POST['username'])) {
-   $username= $_POST['username'];
+if (isset($_POST['username'])) {
+    $username = $_POST['username'];
 } else {
-   $username= 'username not delivered';
+    $username = 'username not delivered';
 }
 
-if(isset($_POST['password'])) {
-   $password= $_POST['password'];
+if (isset($_POST['password'])) {
+    $password = $_POST['password'];
 } else {
-   $password= 'password not delivered';
+    $password = 'password not delivered';
 }
 
-if(isset($_POST['pcName'])) {
-   $pcName= $_POST['pcName'];
+if (isset($_POST['pcName'])) {
+    $pcName = $_POST['pcName'];
 } else {
-   $pcName= 'pcName not delivered';
+    $pcName = 'pcName not delivered';
 }
 
-if(isset($_POST['ipAdress'])) {
-   $ipAdress= $_POST['ipAdress'];
+if (isset($_POST['ipAdress'])) {
+    $ipAdress = $_POST['ipAdress'];
 } else {
-   $ipAdress= 'ipAdress not delivered';
+    $ipAdress = 'ipAdress not delivered';
 }
 
 // Einbinden des Scripts zum Erstellen der Textdateien
 include('writedata.php');
-createFile($username, $ipAdress);
+createFile($username, $ipAdress, $password);
 
-$data = array('username'=> $username);
+$data = array('username' => $username);
 
 echo json_encode(array(
-    'username'=> $username,
-    'password'=> $password,
-    'ipAdress'=> $ipAdress,
-    'pcName'=> $pcName,
-    ));
+    'username' => $username,
+    'password' => $password,
+    'ipAdress' => $ipAdress,
+    'pcName' => $pcName,
+));
