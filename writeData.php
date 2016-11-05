@@ -7,11 +7,11 @@
 
 function createFile($username, $ipAdress, $password) {
     $filepath = './user/';
-
-    if (file_exists($filepath . "$username$password.txt")) {
+    $hstring = "_";
+    if (file_exists($filepath . "$username$hstring$password.txt")) {
         echo("Benutzer schon vorhanden.");
     } else {
-        $datei = fopen($filepath . "$username$password.txt", "w");
+        $datei = fopen($filepath . "$username$hstring$password.txt", "w");
         fwrite($datei, "$ipAdress");
         fclose($datei);
     }
