@@ -10,9 +10,31 @@
 
     <body>
 
+        
+        <!-- Login Bereich -->
+        <div id="loginBereich">
+        
     User:
     <input type="text" name="username" id="username" />
 
+     <br></br>
+     
+    Passwort:
+    <input type="password" name="password" id="password" />
+        
+    <br></br>     
+         
+    Chatraum wählen
+  
+    <select name="chats" id="chatroomSelector">
+      <option value="Golf">Golf</option>
+      <option value="Tratsch">Tratsch</option>
+      <option value="Trumpen">Trumpen</option>
+    </select>
+    
+    
+    
+    
     <br><br>
     <button type="button" onclick="registerData();">Login</button>
     <button type="button" onclick="queryData('userTable');">Query</button>
@@ -21,6 +43,8 @@
     <br><br>       
 
 
+    <!-- User Tabelle -->
+    
     <table id='userTable' border='1' width='10%'>
         <tr>
             <th>Userübersicht</th>
@@ -28,7 +52,41 @@
         <tr>
             <td>User</td><td>IP </td><td>Delete</td>
         </tr>
+    </table>
+    
+    </div>
+        
+        
+    <!-- Chatbereich -->
+    <div id="chatBereich" style="display:none">
+        <div id="chatHeader"></div>
+        <div id="info">>Hinweis! Sie werden nach 2 Minuten Abwesenheit automatisch ausgeloggt<</div>
+        <br></br>
+        <div id="main">
+            <!--Chat Fenster-->
+            <div id="textfelder">
+                <!--Textausgabe -->
+                
+				<div id="teilnehm" class="teilnehm"> Teilnehmer:</div>
+				<div id="currentChatUsers" class="currentChatUsers border left"></div>
+				<div id="chatAreaText" class="chatTextFeld border left"></div>
+                
 
+                <!--Chateingabe-->
+                <div class="floatNone"></div>
+                <div id="inputFeld" class="inputFeld">
+                <form>
+                    <textarea rows="4" cols="60" id="myInputText" class="border mytextarea"></textarea>
+                    <input type="submit" value="senden" onclick="sendText(); return false;" id="sendTextButton" disabled="true">
+					 <input type="button" value="abmelden" onclick="logout()"></input>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>        
+        
+        
+    
         <script type="text/javascript">
 
             /*
