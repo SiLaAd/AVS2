@@ -27,7 +27,7 @@
             <input type="text" name="password" id="password" />
             <br><br>       
 
-            Chatraum wählen
+            Chatraum wählen: 
             <select name="chats" id="chatroomSelector">
                 <option value="Golfen">Golfen</option>
                 <option value="Drohnen">Drohnen</option>
@@ -61,12 +61,11 @@
             <div id="chatHeader"></div>
             <br></br>
             <div id="main">
+                <h2>Chat</h2>
                 <!--Chat Fenster-->
                 <div id="textfelder">
+                    
                     <!--Textausgabe -->
-
-                    <div id="teilnehm" class="teilnehm"> Teilnehmer:</div>
-                    <div id="currentChatUsers" class="currentChatUsers border left"></div>
                     <div id="chatAreaText" class="chatTextFeld border left"></div>
 
 
@@ -75,6 +74,7 @@
                     <div id="inputFeld" class="inputFeld">
                         <form>
                             <textarea rows="4" cols="60" id="myInputText" class="border mytextarea"></textarea>
+                            <br>
                             <input type="submit" value="senden" onclick=""; return false;" id="sendTextButton" disabled="true">
                             <input type="button" value="abmelden" onclick="logout()"></input>
                         </form>

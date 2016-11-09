@@ -41,12 +41,12 @@ function registerData() {
         "pcName": pcName
     }
     );
-
+/*
     write2console(receivedObj.username);
     write2console(receivedObj.password);
     write2console(receivedObj.ipAdress);
     write2console(receivedObj.pcName);
-
+*/
     ajaxCom.disconnect();
 }
 
@@ -70,8 +70,8 @@ function queryData(table_id) {
     }
     );
 
-    write2console(receivedObj.files);
-    write2console(receivedObj.content);
+    //write2console(receivedObj.files);
+    //write2console(receivedObj.content);
 
 
 
@@ -81,10 +81,6 @@ function queryData(table_id) {
     ajaxCom.disconnect();
 
     for (var i in ipadresses) {
-        write2console(ipadresses[i]);
-        write2console(names[i]);
-
-
         var table = document.getElementById(table_id);
         var lastRow = numRows(table_id);
         var rowNum = lastRow + 1;
@@ -121,7 +117,6 @@ function numRows(table_id) {
     return numRows;
 }
 
-
 function deleteTable(table_id) {
     var lastRow = numRows(table_id) - 1;
     console.log(lastRow);
@@ -130,19 +125,13 @@ function deleteTable(table_id) {
         document.getElementById(table_id).deleteRow(i);
         i + 2;
     }
-    //console.log(lastRow);
-    //console.log(i);
-
 }
 
 function getButton() {
-    console.log("Test e");
     var e = window.event,
             btn = e.target || e.srcElement;
-    console.log("Test e");
     return (btn.id);
 }
-
 
 /*
  * Helper Funtkion um die ParentNodes bis zum Element hochzugehen
@@ -156,7 +145,6 @@ function upTo(el, tagName) {
     console.log(el);
     while (el && el.parentNode) {
         el = el.parentNode;
-        console.log(el);
         if (el.tagName && el.tagName.toLowerCase() == tagName) {
             return el;
         }
@@ -171,10 +159,7 @@ function upTo(el, tagName) {
  */
 function deleteRow(el) {
     var username = el.id;
-    console.log(el.id);
     var flag = 1;
-    console.log(el.getAttribute('id'));
-    console.log(username);
     var URL = "./deleteData.php";
     var ajaxCom = new Ajax(URL, receive);
 
@@ -191,10 +176,6 @@ function deleteRow(el) {
     if (row)
         row.parentNode.removeChild(row);
 }
-
-
-
-
 
 /*
  * Löscht die Textdateien der registrierten Nutzer.
