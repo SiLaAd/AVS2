@@ -11,36 +11,54 @@ if (isset($_POST['password'])) {
 } else {
     $password = '';
 }
+if (($_POST['flag'])==1) {
+    deleteFile($username,$password);
+} else {
+    deleteAllFiles($username, $password);
+}
 
-// Aufruf der Funktion zum Löschen des betreffenden Users
-deleteFile($username, $password);
+
 
 /*
  * Die Textdatei mit dem Namen $username_$passwort wird gelöscht
  * Damit wird der Nutzer vom Repositoryserver entfernt
  */
 
-function deleteFile($username, $password) {
+function deleteFile($username) {
 
     $filepath = "./user/";
     $hstring = "_";
-    if (file_exists($filepath . "$username$hstring$password.txt")) {
-        deleteAllFiles();
-    } else {
-        echo ("Fehler beim Löschen. Sie sind nicht berechtigt.");
+    $path = opendir($filepath);
+    
+ 
+    
+    while ($file = readdir($path)) {
+        if ($file != "." && $file != "..") {
+                
+        
+            if(strtok($file, '_')==$username){
+            
+            unlink($filepath . $file);
+        }
+        
+            }
+    
+    
     }
-}
+    
+            }
 
 /*
  * Löscht allt Textdateien aus dem User-Verzeichnis
  * Damit werden alle Nutzer vom Repositoryserver entfernt
  */
 
-function deleteAllFiles() {
+function deleteAllFiles($username, $password) {
     $filepath = "./user/";
+    $hstring = "_";
     $path = opendir($filepath);
-
-    while ($file = readdir($path)) {
+    if (file_exists($filepath . "$username$hstring$password.txt")) {
+        while ($file = readdir($path)) {
         if ($file != "." && $file != "..") {
             unlink($filepath . $file);
         }
@@ -48,4 +66,9 @@ function deleteAllFiles() {
 
     echo ("Alle Nutzer wurden gelöscht.");
     closedir($path);
+    
+    } else {
+        echo ("Fehler beim Löschen. Sie sind nicht berechtigt.");
+    }
+    
 }
