@@ -16,13 +16,13 @@ if (isset($_POST['password'])) {
 if (isset($_POST['pcName'])) {
     $pcName = $_POST['pcName'];
 } else {
-    $pcName = 'pcName not delivered';
+    $pcName = '';
 }
 
 if (isset($_POST['ipAdress'])) {
     $ipAdress = $_POST['ipAdress'];
 } else {
-    $ipAdress = 'ipAdress not delivered';
+    $ipAdress = '';
 }
 if (empty($username) or empty($password)) {
     echo("User und Passwort müssen ausgefüllt sein!");
