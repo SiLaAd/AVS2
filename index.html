@@ -10,41 +10,22 @@
 
     <body>
 
-        
-        <!-- Login Bereich -->
-        <div id="loginBereich">
-        
-    User:
-    <input type="text" name="username" id="username" />
 
-     <br></br>
-     
-    Passwort:
-    <input type="password" name="password" id="password" />
-        
-    <br></br>     
-         
-    Chatraum wählen
-  
-    <select name="chats" id="chatroomSelector">
-      <option value="Golf">Golf</option>
-      <option value="Tratsch">Tratsch</option>
-      <option value="Trumpen">Trumpen</option>
-    </select>
-    
-    
-    
-    
+        User:
+    <input type="text" name="username" id="username" />
     <br><br>
-    <button type="button" onclick="registerData();">Login</button>
+
+    Passwort:
+    <input type="text" name="password" id="password" />
+    <br><br>       
+
+    <button type="button" onclick="registerData();">Register</button>
     <button type="button" onclick="queryData('userTable');">Query</button>
     <button type="button" onclick="deleteTable('userTable');">Clear table</button>
     <button type="button" onclick="deleteData();">Delete all</button>
     <br><br>       
 
 
-    <!-- User Tabelle -->
-    
     <table id='userTable' border='1' width='10%'>
         <tr>
             <th>Userübersicht</th>
@@ -52,41 +33,7 @@
         <tr>
             <td>User</td><td>IP </td><td>Delete</td>
         </tr>
-    </table>
-    
-    </div>
-        
-        
-    <!-- Chatbereich -->
-    <div id="chatBereich" style="display:none">
-        <div id="chatHeader"></div>
-        <div id="info">>Hinweis! Sie werden nach 2 Minuten Abwesenheit automatisch ausgeloggt<</div>
-        <br></br>
-        <div id="main">
-            <!--Chat Fenster-->
-            <div id="textfelder">
-                <!--Textausgabe -->
-                
-				<div id="teilnehm" class="teilnehm"> Teilnehmer:</div>
-				<div id="currentChatUsers" class="currentChatUsers border left"></div>
-				<div id="chatAreaText" class="chatTextFeld border left"></div>
-                
 
-                <!--Chateingabe-->
-                <div class="floatNone"></div>
-                <div id="inputFeld" class="inputFeld">
-                <form>
-                    <textarea rows="4" cols="60" id="myInputText" class="border mytextarea"></textarea>
-                    <input type="submit" value="senden" onclick="sendText(); return false;" id="sendTextButton" disabled="true">
-					 <input type="button" value="abmelden" onclick="logout()"></input>
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>        
-        
-        
-    
         <script type="text/javascript">
 
             /*
@@ -192,6 +139,11 @@
 
             }
 
+            /*
+             * Gibt die Anzahl der Zeilen des Table Elements wieder
+             * @param {type} table_id
+             * @returns {Number.numRows|numRows.numRows.numRows}
+             */
             function numRows(table_id) {
                 var rows = document.getElementById(table_id).getElementsByTagName('tr');
                 var numRows = 0;
@@ -203,7 +155,11 @@
                 return numRows;
             }
 
-
+            /*
+             * Geht so lange die Tabelle durch, bis kein Element mehr in der Tabelle steht außer den Kopf (Ersten zwei Zeilen)
+             * @param {type} table_id
+             * @returns {undefined}
+             */
             function deleteTable(table_id) {
                 var lastRow = numRows(table_id) - 1;
                 console.log(lastRow);
@@ -216,12 +172,6 @@
                 //console.log(i);
 
             }
-            function getButton() {
-                var e = window.event,
-                        btn = e.target || e.srcElement;
-                return (btn.id);
-            }
-
 
             /*
              * Helper Funtkion um die ParentNodes bis zum Element hochzugehen
@@ -242,33 +192,6 @@
                 }
                 return null;
             }
-
-            /*
-             * Funktion zum löschen der ausgewählten Zeile
-             * @param {type} el
-             * @returns {undefined}
-             */
-            function deleteRow(el) {
-                var username = getButton();
-                var URL = "http://localhost/AVS/deleteData.php";
-                var ajaxCom = new Ajax(URL, receive);
-
-                // expected components (checked in receive())
-                receivedObj = {"username": 0};
-                ajaxCom.send({
-                    "username": username
-                });
-
-                ajaxCom.disconnect();
-                var row = upTo(el, 'tr')
-
-                if (row)
-                    row.parentNode.removeChild(row);
-            }
-
-
-
-
 
             /*
              * Löscht die Textdateien der registrierten Nutzer.
