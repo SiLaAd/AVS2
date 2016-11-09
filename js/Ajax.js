@@ -137,7 +137,7 @@ function receive(text) {
                 write2console(text);
             }
             receivedObj= null;
-            throw "received empty message - abort";
+            throw "";
         }
 //        write2console('*'+text+'*');
         var obj= JSON.parse(text);

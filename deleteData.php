@@ -16,15 +16,14 @@ if (isset($_POST['password'])) {
 deleteFile($username, $password);
 
 /*
- * Die Textdatei mit dem Namen $username wird gelöscht
+ * Die Textdatei mit dem Namen $username_$passwort wird gelöscht
  * Damit wird der Nutzer vom Repositoryserver entfernt
- * Wenn $username leer ist, wird die Funktion deleteAllFiles(); aufgerufen
  */
 
 function deleteFile($username, $password) {
 
     $filepath = "./user/";
-    $hstring="_";
+    $hstring = "_";
     if (file_exists($filepath . "$username$hstring$password.txt")) {
         deleteAllFiles();
     } else {

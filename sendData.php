@@ -4,13 +4,13 @@
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
 } else {
-    $username = 'username not delivered';
+    $username = '';
 }
 
 if (isset($_POST['password'])) {
     $password = $_POST['password'];
 } else {
-    $password = 'password not delivered';
+    $password = '';
 }
 
 if (isset($_POST['pcName'])) {
@@ -24,16 +24,19 @@ if (isset($_POST['ipAdress'])) {
 } else {
     $ipAdress = 'ipAdress not delivered';
 }
-
+if (empty($username) or empty($password)) {
+    echo("User und Passwort müssen ausgefüllt sein!");
+} else {
 // Einbinden des Scripts zum Erstellen der Textdateien
-include('writedata.php');
-createFile($username, $ipAdress, $password);
+    include('writedata.php');
+    createFile($username, $ipAdress, $password);
 
-$data = array('username' => $username);
+    $data = array('username' => $username);
 
-echo json_encode(array(
-    'username' => $username,
-    'password' => $password,
-    'ipAdress' => $ipAdress,
-    'pcName' => $pcName,
-));
+    echo json_encode(array(
+        'username' => $username,
+        'password' => $password,
+        'ipAdress' => $ipAdress,
+        'pcName' => $pcName,
+    ));
+}

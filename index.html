@@ -139,6 +139,11 @@
 
             }
 
+            /*
+             * Gibt die Anzahl der Zeilen des Table Elements wieder
+             * @param {type} table_id
+             * @returns {Number.numRows|numRows.numRows.numRows}
+             */
             function numRows(table_id) {
                 var rows = document.getElementById(table_id).getElementsByTagName('tr');
                 var numRows = 0;
@@ -150,25 +155,23 @@
                 return numRows;
             }
 
-
+            /*
+             * Geht so lange die Tabelle durch, bis kein Element mehr in der Tabelle steht außer den Kopf (Ersten zwei Zeilen)
+             * @param {type} table_id
+             * @returns {undefined}
+             */
             function deleteTable(table_id) {
                 var lastRow = numRows(table_id) - 1;
                 console.log(lastRow);
                 var i = 2;
                 while (i <= lastRow) {
                     document.getElementById(table_id).deleteRow(i);
-                    i+2;
+                    i + 2;
                 }
                 //console.log(lastRow);
                 //console.log(i);
 
             }
-            function getButton() {
-                var e = window.event,
-                        btn = e.target || e.srcElement;
-                return (btn.id);
-            }
-
 
             /*
              * Helper Funtkion um die ParentNodes bis zum Element hochzugehen
@@ -189,33 +192,6 @@
                 }
                 return null;
             }
-
-            /*
-             * Funktion zum löschen der ausgewählten Zeile
-             * @param {type} el
-             * @returns {undefined}
-             */
-            function deleteRow(el) {
-                var username = getButton();
-                var URL = "http://localhost/AVS/deleteData.php";
-                var ajaxCom = new Ajax(URL, receive);
-
-                // expected components (checked in receive())
-                receivedObj = {"username": 0};
-                ajaxCom.send({
-                    "username": username
-                });
-
-                ajaxCom.disconnect();
-                var row = upTo(el, 'tr')
-
-                if (row)
-                    row.parentNode.removeChild(row);
-            }
-
-
-
-
 
             /*
              * Löscht die Textdateien der registrierten Nutzer.
