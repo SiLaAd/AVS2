@@ -12,89 +12,86 @@
 
     <body>
 
-    <!-- Login Bereich -->
-    <div id="loginBereich">
-   
+        <!-- Login Bereich -->
+        <div id="loginBereich">
 
-     
-        
-        User:
-    <input type="text" name="username" id="username" />
-    <br><br>
+            User:
+            <input type="text" name="username" id="username" />
+            <br><br>
 
-    Passwort:
-    <input type="text" name="password" id="password" />
-    <br><br>       
+            Passwort:
+            <input type="text" name="password" id="password" />
+            <br><br>       
 
-    Chatraum wählen
-   <select name="chats" id="chatroomSelector">
-      <option value="Golfen">Golfen</option>
-      <option value="Drohnen">Drohnen</option>
-      <option value="Trumpen">Trumpen</option>
-   </select>
-    
-    <br><br>
-     <button type="button" onclick="login();">Login</button>
-    <button type="button" onclick="registerData();">Register</button>
-    <button type="button" onclick="queryData('userTable');">Query</button>
-    <button type="button" onclick="deleteTable('userTable');">Clear table</button>
-    <button type="button" onclick="deleteData();">Delete all</button>
-    <br><br>       
+            Chatraum wählen
+            <select name="chats" id="chatroomSelector">
+                <option value="Golfen">Golfen</option>
+                <option value="Drohnen">Drohnen</option>
+                <option value="Trumpen">Trumpen</option>
+            </select>
 
- 
-    <table id='userTable' border='1' width='10%'>
-        <tr>
-            <th>Userübersicht</th>
-        </tr>
-        <tr>
-            <td>User</td><td>IP </td><td>Delete</td>
-        </tr>
-    </table>
-    </div>
-    
-    
+            <br><br>
+            <button type="button" onclick="login();">Login</button>
+            <button type="button" onclick="registerData();">Register</button>
+            <button type="button" onclick="queryData('userTable');">Query</button>
+            <button type="button" onclick="deleteTable('userTable');">Clear table</button>
+            <button type="button" onclick="deleteData();">Delete all</button>
+            <br><br>       
+
+
+            <table id='userTable' border='1' width='10%'>
+                <tr>
+                    <th>Userübersicht</th>
+                </tr>
+                <tr>
+                    <td>User</td><td>IP </td><td>Delete</td>
+                </tr>
+            </table>
+        </div>
+
+
         <!-- Chatbereich -->
-    <div id="chatBereich" style="display:none">
-        
-        <div id="chatHeader"></div>
-        <div id="info">>Hinweis! Sie werden nach 2 Minuten Abwesenheit automatisch ausgeloggt<</div>
-        <br></br>
-        <div id="main">
-            <!--Chat Fenster-->
-            <div id="textfelder">
-                <!--Textausgabe -->
-                
-				<div id="teilnehm" class="teilnehm"> Teilnehmer:</div>
-				<div id="currentChatUsers" class="currentChatUsers border left"></div>
-				<div id="chatAreaText" class="chatTextFeld border left"></div>
-                
+        <div id="chatBereich" style="display:none">
 
-                <!--Chateingabe-->
-                <div class="floatNone"></div>
-                <div id="inputFeld" class="inputFeld">
-                <form>
-                    <textarea rows="4" cols="60" id="myInputText" class="border mytextarea"></textarea>
-                    <input type="submit" value="senden" onclick=""; return false;" id="sendTextButton" disabled="true">
-					 <input type="button" value="abmelden" onclick="logout()"></input>
-                </form>
+            <div id="chatHeader"></div>
+            <div id="info">>Hinweis! Sie werden nach 2 Minuten Abwesenheit automatisch ausgeloggt<</div>
+            <br></br>
+            <div id="main">
+                <!--Chat Fenster-->
+                <div id="textfelder">
+                    <!--Textausgabe -->
+
+                    <div id="teilnehm" class="teilnehm"> Teilnehmer:</div>
+                    <div id="currentChatUsers" class="currentChatUsers border left"></div>
+                    <div id="chatAreaText" class="chatTextFeld border left"></div>
+
+
+                    <!--Chateingabe-->
+                    <div class="floatNone"></div>
+                    <div id="inputFeld" class="inputFeld">
+                        <form>
+                            <textarea rows="4" cols="60" id="myInputText" class="border mytextarea"></textarea>
+                            <input type="submit" value="senden" onclick=""; return false;" id="sendTextButton" disabled="true">
+                                   <input type="button" value="abmelden" onclick="logout()"></input>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    
-    
+
+
+
         <script type="text/javascript">
 
-        function login(){
-            $('#loginBereich').hide();
-            $('#chatBereich').show();
-        }
-        function logout(){
-            $('#loginBereich').show();
-            $('#chatBereich').hide();
-        }        
-        
+            function login() {
+                $('#loginBereich').hide();
+                $('#chatBereich').show();
+            }
+            function logout() {
+                $('#loginBereich').show();
+                $('#chatBereich').hide();
+            }
+
 
             /*
              * Generiert eine zufällige IP als Dummy-Daten
@@ -138,7 +135,7 @@
                 write2console(receivedObj.pcName);
 
                 ajaxCom.disconnect();
-                
+
             }
 
             /*
