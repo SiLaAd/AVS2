@@ -1,0 +1,75 @@
+body {
+	background-color: white;
+}
+#webseite{
+	width:auto;
+	margin:0 auto;
+}
+
+.header{
+	color: white;
+}
+
+
+.border{
+	border: 1px solid;
+}
+.infobox {
+	cursor: pointer;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+.chatTextFeld{
+	width: 435px;
+	height: 500px;
+	background: white;
+	overflow: auto;
+	margin-left: -200px;
+	margin-top: 80px;
+	border: 3px solid black;
+}
+
+.currentChatUsers{
+	width: 200px;
+	height: 60px;
+	background: white;
+	overflow: auto;	
+}
+
+.inputFeld {
+	margin-top: 10px;
+}
+
+.myTextarea {
+	width: 425px;
+	height: 50px;
+}
+
+.left{
+	float: left;
+}
+.right{
+	float: right;
+	
+}
+.floatNone{
+	clear: both;
+}
+
+#personOne{
+
+}
+#personTwo{
+
+}
+#personMe{
+
+}
+.Username{
+	font-size:20px;
+	text-align:center;
+	color:white;
+	text-transform: uppercase;
+}
