@@ -12,15 +12,35 @@ if (isset($_POST['password'])) {
 } else {
     $password = 'password not delivered';
 }
+if (isset($_POST['flag'])) {
+    $flag = $_POST['flag'];
+} else {
+    $flag = 'flag not delivered';
+}
 
-$filepath = "./user/";
-$hstring = "_";
+if (isset($_POST['chatRaum'])) {
+    $chatRaum = $_POST['chatRaum'];
+} else {
+    $flag = 'chatRaum not delivered';
+}
+
+switch ($flag) {
+    case'chatData':
+        requestChatData($chatRaum);
+        break;
+    case'requestData':
+        $filepath = "./user/";
+        $hstring = "_";
 //prüfen ob der Benutzer berechtigt ist die Daten abzurufen (User vorhanden?)
 if (file_exists($filepath . "$username$hstring$password.txt")) {
     requestData();
 } else {
     echo ("Fehler beim Abrufen der Daten. Sie sind nicht berechtigt.");
 }
+    default:
+}
+
+
 
 /*
  * Liest das "user" Verzeichnis und gibt die Dateinamen und deren Inhalt zurück
@@ -48,4 +68,27 @@ function requestData() {
         'files' => $fileWoEx,
         'content' => $content
     ));
-}
+
+    }
+    
+    
+    function requestChatData($chatRaum){
+        
+    $filepath = "./chatRooms/$chatRaum/";
+    $jsonMessage = "";
+    
+    $filearray = file($filepath . "$chatRaum.txt");
+    $lastfifteenlines = array_slice($filearray,-11,11);
+        //$file[] = fread(fopen($filepath . "$chatRaum.txt","r+"),filesize($filepath . "$chatRaum.txt"));
+        //for ($i = max(0, count($lastfifteenlines)); $i < count($lastfifteenlines); $i++) {
+        foreach ($lastfifteenlines as $lf){
+            $jsonMessage = $jsonMessage . $lf;
+        }
+        
+        //$jsonMessage = "{".$jsonMessage."}";
+        //echo (json_parse($jsonMessage));
+        
+       // }
+        
+        
+    }
