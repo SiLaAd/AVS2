@@ -1,6 +1,26 @@
 function login() {
-    $('#loginBereich').hide();
-    $('#chatBereich').show();
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var URL = "./helperFunctions.php";
+    var ajaxCom = new Ajax(URL, receive);
+    var flag = "login";
+    
+    // expected components (checked in receive())
+    receivedObj = {"returnVar": 0};
+    ajaxCom.send({
+        "username": username,
+        "password": password,
+        "flag": flag
+    }
+    );
+   var returnVar= receivedObj.returnVar;;
+    if(returnVar==1){
+     $('#loginBereich').hide();
+     $('#chatBereich').show();   
+    } else {
+        console.log("User nicht für Chat registriert!")
+    }
+        ajaxCom.disconnect();
 }
 function logout() {
     $('#loginBereich').show();
@@ -41,12 +61,12 @@ function registerData() {
         "pcName": pcName
     }
     );
-/*
-    write2console(receivedObj.username);
-    write2console(receivedObj.password);
-    write2console(receivedObj.ipAdress);
-    write2console(receivedObj.pcName);
-*/
+    /*
+     write2console(receivedObj.username);
+     write2console(receivedObj.password);
+     write2console(receivedObj.ipAdress);
+     write2console(receivedObj.pcName);
+     */
     ajaxCom.disconnect();
 }
 
