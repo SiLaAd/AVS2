@@ -76,19 +76,45 @@ function requestData() {
         
     $filepath = "./chatRooms/$chatRaum/";
     $jsonMessage = "";
+    $i=1;
+    $lines=array();
+    $fp=fopen($filepath . "$chatRaum.txt", 'r');
+    while (!feof($fp))
+    {
+    $line=fgets($fp);
+
+    //process line however you like
+    $line=trim($line);
+
+    //add to array
+    $lines[]=$line;
     
-    $filearray = file($filepath . "$chatRaum.txt");
-    $lastfifteenlines = array_slice($filearray,-11,11);
-        //$file[] = fread(fopen($filepath . "$chatRaum.txt","r+"),filesize($filepath . "$chatRaum.txt"));
+}
+fclose($fp);
+var_dump($lines[13]);
+    //$filearray = fread(fopen($filepath . "$chatRaum.txt","r+"),filesize($filepath . "$chatRaum.txt"));
+//    $handle = fopen($filepath . "$chatRaum.txt","r+");
+//            if ($handle) {
+//    while (($line = fgets($handle)) !== false) {
+//        $array[] = $line[$i];
+//        $i++;
+//        
+//    }
+//    foreach ($array as $key => $val) {
+//        var_dump($val);
+//    }
+//    fclose($handle);
+//} else {
+    // error opening the file.
+} 
+    //$lastfifteenlines = array_slice($filearray,-11,11);
+        //$file[] = 
         //for ($i = max(0, count($lastfifteenlines)); $i < count($lastfifteenlines); $i++) {
-        foreach ($lastfifteenlines as $lf){
-            $jsonMessage = $jsonMessage . $lf;
-        }
+//        foreach ($filearray as $lf){
+//            $jsonMessage = $jsonMessage . $lf;
+//        }
         
-        //$jsonMessage = "{".$jsonMessage."}";
-        //echo (json_parse($jsonMessage));
+
         
        // }
         
-        
-    }

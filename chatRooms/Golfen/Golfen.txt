@@ -1,26 +1,14 @@
-"Lars" : "1
-",
-"Lars" : "2
-",
-"Lars" : "3
-",
-"Lars" : "4
-",
-"Lars" : "5
-",
-"Lars" : "6",
-"Lars" : "7",
-"Lars" : "8",
-"Lars" : "9",
-"Lars" : "10",
-"Lars" : "11",
-"Lars" : "12",
-"Lars" : "test",
-"Lars" : "test2",
-"Lars" : "test3",
-"Lars" : "test4",
-"Lars" : "test5",
-"Lars" : "test5",
-"Lars" : "test5",
-"Lars" : "Hallo",
-"Lars" : "a"
+"Nutzer":"Lars","Nachricht":"test",
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Lars","Nachricht":"test"},
+{"Nutzer":"Larss","Nachricht":"test"}

@@ -283,15 +283,16 @@ function getChatText(chatRaum) {
         "chatRaum":chatRaum,
         "flag": flag
     });
-
-    responseData = $.parseJSON(receivedObj.messages);
-    $('#chatAreaText').text('');
+    
+   //responseData = $.parseJSON(receivedObj.messages);
+    //responseData = $.parseJSON(receivedObj.messages);
+    //$('#chatAreaText').text('');
 //    for (var i = response.data.length - 1; i >= 0; i--) {
 //         var chatText = '<div>' + response.data[i].nutzername + ' : ' + response.data[i].text + '</div>';
 //         $('#chatAreaText').append(chatText);
 //    };
     
-    console.log(responseData[Object.keys(responseData)[0]]);
+   // console.log(responseData[Object.keys(responseData)[0]]);
     
     
     

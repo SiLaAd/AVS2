@@ -48,9 +48,9 @@ function writeChatData($username, $nachricht, $chatRaum) {
     $filepath = "./chatRooms/$chatRaum/";
     $hstring = "_";
     if (file_exists($filepath . "$chatRaum.txt")) {
-     file_put_contents($filepath . "$chatRaum.txt",",".PHP_EOL."\"$username\" : \"$nachricht\"", FILE_APPEND); 
+     file_put_contents($filepath . "$chatRaum.txt",",".PHP_EOL."{\"Nutzer\":\"$username\",\"Nachricht\":\"$nachricht\"}", FILE_APPEND); 
     } else {
-        file_put_contents($filepath . "$chatRaum.txt","\"$username\" : \"$nachricht\"", FILE_APPEND);
+        file_put_contents($filepath . "$chatRaum.txt","{\"Nutzer\":\"$username\",\"Nachricht\":\"$nachricht\"}", FILE_APPEND);
       
     }
 }
