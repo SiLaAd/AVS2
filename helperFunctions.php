@@ -43,4 +43,5 @@ function checkPerm($username, $password, $flag) {
     echo json_encode(array(
         'returnVar' => $returnVar
     ));
+    return $returnVar;
 }

@@ -1,13 +1,26 @@
 //checkt nach input für die Nachricht, falls true -> enable Button
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $('#myInputText').on('input', function() {
+    $('#myInputText').on('input', function () {
         if ($('#myInputText').val() == '')
             $('#sendTextButton').prop('disabled', true);
         else {
             $('#sendTextButton').prop('disabled', false);
         }
-    })});
+    })
+    //aktualisieren der seite nach 6000 Millisekunden
+    var timer = 6000;
+    var refreshChatTextInterval = setInterval(function () {
+        if ($('#chatBereich').is(':visible')) {
+            var chatroomId = $('#chatroomSelector').val();
+            getChatText(chatroomId);
+            console.log('hole daten');
+        } else {
+            console.log('nicht eingeloggt');
+        }
+        ;
+    }, timer);
+});
 
 function login() {
     var username = document.getElementById("username").value;
@@ -15,7 +28,7 @@ function login() {
     var URL = "./helperFunctions.php";
     var ajaxCom = new Ajax(URL, receive);
     var flag = "login";
-    
+
     // expected components (checked in receive())
     receivedObj = {"returnVar": 0};
     ajaxCom.send({
@@ -24,14 +37,15 @@ function login() {
         "flag": flag
     }
     );
-   var returnVar= receivedObj.returnVar;;
-    if(returnVar==1){
-     $('#loginBereich').hide();
-     $('#chatBereich').show();   
+    var returnVar = receivedObj.returnVar;
+
+    if (returnVar == 1) {
+        $('#loginBereich').hide();
+        $('#chatBereich').show();
     } else {
         console.log("User nicht für Chat registriert!")
     }
-        ajaxCom.disconnect();
+    ajaxCom.disconnect();
 }
 
 function logout() {
@@ -107,6 +121,7 @@ function registerData() {
 function queryData(table_id) {
     var files;
     var content;
+    var flag = "requestData";
     var URL = "./requestData.php";
     var ajaxCom = new Ajax(URL, receive);
     var username = document.getElementById("username").value;
@@ -117,7 +132,8 @@ function queryData(table_id) {
         "username": username,
         "password": password,
         "files": files,
-        "content": content
+        "content": content,
+        "flag" : flag
     }
     );
 
@@ -250,3 +266,45 @@ function deleteData() {
 
     ajaxCom.disconnect();
 }
+
+/**
+*geschriebener Text wird aus der Datenbank geholt
+*/
+function getChatText(chatRaum) {
+
+    var URL = "./requestData.php";
+    var flag = "chatData";
+    var ajaxCom = new Ajax(URL, receive);
+    var responseData;
+
+    // expected components (checked in receive())
+    receivedObj = {"messages": 0};
+    ajaxCom.send({
+        "chatRaum":chatRaum,
+        "flag": flag
+    });
+
+    responseData = $.parseJSON(receivedObj.messages);
+    $('#chatAreaText').text('');
+//    for (var i = response.data.length - 1; i >= 0; i--) {
+//         var chatText = '<div>' + response.data[i].nutzername + ' : ' + response.data[i].text + '</div>';
+//         $('#chatAreaText').append(chatText);
+//    };
+    
+    console.log(responseData[Object.keys(responseData)[0]]);
+    
+    
+    
+    
+//        
+//        
+//
+//        // scroll down chatarea
+//        var sd    = $('#chatAreaText');
+//        var height = $('#chatAreaText')[0].scrollHeight;
+//        sd.scrollTop(height);
+    
+ajaxCom.disconnect();
+}
+	//Aufruf der AJAX methode
+    
