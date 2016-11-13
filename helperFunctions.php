@@ -17,8 +17,13 @@ if (isset($_POST['flag'])) {
     $flag = 'flag not delivered';
 }
 
+switch($flag) {
+    case'login':
+         checkPerm($username, $password, $flag);
+                break;
+            default:
+        }
 
-checkPerm($username, $password, $flag);
 
 
 
