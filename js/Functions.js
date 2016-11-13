@@ -1,3 +1,14 @@
+//checkt nach input für die Nachricht, falls true -> enable Button
+$(document).ready(function() {
+
+    $('#myInputText').on('input', function() {
+        if ($('#myInputText').val() == '')
+            $('#sendTextButton').prop('disabled', true);
+        else {
+            $('#sendTextButton').prop('disabled', false);
+        }
+    })});
+
 function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
@@ -22,9 +33,29 @@ function login() {
     }
         ajaxCom.disconnect();
 }
+
 function logout() {
     $('#loginBereich').show();
     $('#chatBereich').hide();
+    console.log('logout');
+}
+
+function sendMessage() {
+    var username = $('#username').val();
+    var textMessage = $('#myInputText').val();
+    var chatRaum = $('#chatroomSelector').val();
+    var URL = "./writeData.php";
+    var ajaxCom = new Ajax(URL, receive);
+    var flag = 'sendMessage';
+    // expected components (checked in receive())
+    ajaxCom.send({
+        "username": username,
+        "textMessage": textMessage,
+        "chatRaum": chatRaum,
+        "flag": flag
+    }
+    );
+    ajaxCom.disconnect();
 }
 
 /*
