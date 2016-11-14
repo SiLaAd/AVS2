@@ -3,13 +3,13 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="js/Ajax.js"></script>
         <script src="js/Writer.js"></script>
         <script src="js/Functions.js"></script>
         
         <link rel="stylesheet" type="text/css" href="style/style.css">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
         
         <title>Aufgabe 2</title>
     </head>
@@ -67,15 +67,13 @@
                     
                     <!--Textausgabe -->
                     <div id="chatAreaText" class="chatTextFeld border left"></div>
-
-
                     <!--Chateingabe-->
                     <div class="floatNone"></div>
                     <div id="inputFeld" class="inputFeld">
                         <form>
                             <textarea rows="4" cols="60" id="myInputText" class="border mytextarea"></textarea>
                             <br>
-                            <input type="submit" value="senden" onclick=""; return false;" id="sendTextButton" disabled="true">
+                            <input type="button" value="senden" onclick="sendMessage()"; id="sendTextButton" disabled="false">
                             <input type="button" value="abmelden" onclick="logout()"></input>
                         </form>
                     </div>
