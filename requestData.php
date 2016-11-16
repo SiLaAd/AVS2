@@ -1,4 +1,5 @@
 <?php
+
 include './classes/userClass.php';
 include './classes/messageClass.php';
 //Auslesen der übertragenen POST-Daten
@@ -36,7 +37,6 @@ switch ($flag) {
 //prüfen ob der Benutzer berechtigt ist die Daten abzurufen (User vorhanden?)
         if (file_exists($filepath . "$username$hstring$password.txt")) {
             requestData();
-            
         } else {
             echo ("Fehler beim Abrufen der Daten. Sie sind nicht berechtigt.");
         }
@@ -77,42 +77,43 @@ function requestData() {
 }
 
 function requestChatData($chatRaum) {
-
     $filepath = "./chatRooms/$chatRaum/";
-    $i = 0;
     $lines = array();
+    $messageArray = array();
     $fp = fopen($filepath . "$chatRaum.txt", 'r');
-   
-//    while (!feof($fp)) {
-//        $line = fgets($fp);
-//        $line = trim($line);
-//        $lines[] = $line;
-//        $messageClass = new messageClass($line, $username);
-//    }
-    
-    $_content = file($filepath."$chatRaum.txt");
+
+    $_content = file($filepath . "$chatRaum.txt");
     $lineCount = count($_content);
-    
 
-    $max10Line=0;
-    if($lineCount>20){
-    $max10Line=$lineCount-20;
+
+    $max10Line = 0;
+    if ($lineCount > 20) {
+        $max10Line = $lineCount - 20;
     }
-    echo($lineCount);
-    echo($max10Line);
-    while($max10Line < $lineCount-1){
-        $lines = file($filepath."$chatRaum.txt");
-        $tempUser = $lines[$max10Line];
-        $tempMessage = $lines[$max10Line+1];
-        $max10Line++;
-        $max10Line++;
-        //echo($tempUser);
-        echo($tempMessage);
-        $messageClass = new messageClass($tempMessage, $tempUser);
-        json_encode($messageClass);
-        //echo($messageClass->message);
-            }
 
+    while ($max10Line < $lineCount - 1) {
+        $lines = file($filepath . "$chatRaum.txt");
+        $tempUser = $lines[$max10Line];
+        $tempMessage = $lines[$max10Line + 1];
+        $max10Line++;
+        $max10Line++;
+        $messageClass = new messageClass($tempMessage, $tempUser);
+        $messageArray[$messageClass->username]=$messageClass->message;
+    }
     
+    echo json_encode($messageArray);
     fclose($fp);
+}
+
+function testArray($array){
+    $arrayCount = count($array);
+    $j=0;
+    $json = "";
+    
+    while($j<$arrayCount){
+        $json = json_encode($array[$j]);
+        $j++;
+        echo str($json);
+    }
+
 }

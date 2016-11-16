@@ -12,6 +12,9 @@ class messageClass {
         $this->timestamp = date("Y-m-d H:i:s");   
     }
 
+    function __destruct() {
+        print "zerstört!";
+    }
     function test() {
         echo $this->username;
         echo $this->message;

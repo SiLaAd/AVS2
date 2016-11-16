@@ -275,37 +275,34 @@ function getChatText(chatRaum) {
     var URL = "./requestData.php";
     var flag = "chatData";
     var ajaxCom = new Ajax(URL, receive);
-    var responseData;
-
+    var responseMsg;
+    var responseUsr;
     // expected components (checked in receive())
-    receivedObj = {"messages": 0};
+    receivedObj = {"messages": 0, "username": 0};
     ajaxCom.send({
         "chatRaum":chatRaum,
         "flag": flag
     });
-    
-   //responseData = $.parseJSON(receivedObj.messages);
-    //responseData = $.parseJSON(receivedObj.messages);
-    //$('#chatAreaText').text('');
+//   
+//   responseMsg = $.parseJSON(receivedObj.messages);
+//   responseUsr = $.parseJSON(receivedObj.username);
+//   console.log(responseMsg);
+//   console.log(responseUsr);
+//    
+//    $('#chatAreaText').text('');
 //    for (var i = response.data.length - 1; i >= 0; i--) {
 //         var chatText = '<div>' + response.data[i].nutzername + ' : ' + response.data[i].text + '</div>';
 //         $('#chatAreaText').append(chatText);
 //    };
-    
-   // console.log(responseData[Object.keys(responseData)[0]]);
-    
-    
-    
-    
-//        
-//        
+//    
+//    console.log(responseData[Object.keys(responseData)[0]]);
 //
 //        // scroll down chatarea
 //        var sd    = $('#chatAreaText');
 //        var height = $('#chatAreaText')[0].scrollHeight;
 //        sd.scrollTop(height);
-    
-ajaxCom.disconnect();
+//    
+//ajaxCom.disconnect();
 }
 	//Aufruf der AJAX methode
     
