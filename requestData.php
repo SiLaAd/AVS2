@@ -81,6 +81,7 @@ function requestChatData($chatRaum) {
     $lines = array();
     $messageArray = array();
     $fp = fopen($filepath . "$chatRaum.txt", 'r');
+    $i=0;
 
     $_content = file($filepath . "$chatRaum.txt");
     $lineCount = count($_content);
@@ -98,10 +99,11 @@ function requestChatData($chatRaum) {
         $max10Line++;
         $max10Line++;
         $messageClass = new messageClass($tempMessage, $tempUser);
-        $messageArray[$messageClass->username]=$messageClass->message;
+        $messageArray[$i]=$messageClass->message;
+        $i++;
     }
     
-    echo json_encode($messageArray);
+    echo json_encode($messageArray[$i-1]);
     fclose($fp);
 }
 
