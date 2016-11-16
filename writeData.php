@@ -47,7 +47,7 @@ function writeChatData($username, $nachricht, $chatRaum) {
 
     $filepath = "./chatRooms/$chatRaum/";
     $hstring = "_";
-     file_put_contents($filepath . "$chatRaum.txt","$username".PHP_EOL."$nachricht".PHP_EOL, FILE_APPEND); 
+     file_put_contents($filepath . "$chatRaum.txt","$username\n"."$nachricht\n", FILE_APPEND); 
 }
 
 function countFileLines($file) {
