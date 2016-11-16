@@ -102,8 +102,8 @@ function requestChatData($chatRaum) {
     echo($max10Line);
     while($max10Line < $lineCount-1){
         $lines = file($filepath."$chatRaum.txt");
-        $tempMessage = $lines[$max10Line];
-        $tempUser = $lines[$max10Line+1];
+        $tempUser = $lines[$max10Line];
+        $tempMessage = $lines[$max10Line+1];
         $max10Line++;
         $max10Line++;
         //echo($tempUser);
