@@ -127,7 +127,7 @@ function queryData(table_id) {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     // expected components (checked in receive())
-    receivedObj = {"files": 0, "content": 0};
+    receivedObj = {"files": 0};
     ajaxCom.send({
         "username": username,
         "password": password,
@@ -141,30 +141,28 @@ function queryData(table_id) {
     //write2console(receivedObj.content);
 
 
-
-    var ipadresses = receivedObj.content;
     var names = receivedObj.files;
 
     ajaxCom.disconnect();
 
-    for (var i in ipadresses) {
+    for (var i in names) {
         var table = document.getElementById(table_id);
         var lastRow = numRows(table_id);
         var rowNum = lastRow + 1;
         var row = table.insertRow(lastRow);
 
         var cell_1 = row.insertCell(0);
-        var textNode = document.createTextNode(names[i]);
+        var textNode = document.createTextNode(names[i].name);
         cell_1.appendChild(textNode);
 
         var cell_2 = row.insertCell(1);
-        var textNode = document.createTextNode(ipadresses[i]);
+        var textNode = document.createTextNode(names[i].ip);
         cell_2.appendChild(textNode);
 
         var cell_3 = row.insertCell(2);
         var myButton = document.createElement("button");
         var Text = document.createTextNode("Löschen");
-        myButton.id = names[i];
+        myButton.id = names[i].name;
         myButton.appendChild(Text);
         myButton.setAttribute('onclick', 'deleteRow(this)');
         cell_3.appendChild(myButton);
@@ -275,25 +273,22 @@ function getChatText(chatRaum) {
     var URL = "./requestData.php";
     var flag = "chatData";
     var ajaxCom = new Ajax(URL, receive);
-    var responseMsg;
-    var responseUsr;
     // expected components (checked in receive())
-    receivedObj = {"messages": 0, "username": 0};
+    receivedObj = {"messages": 0};
     ajaxCom.send({
         "chatRaum":chatRaum,
         "flag": flag
     });
-//   
-//   responseMsg = $.parseJSON(receivedObj.messages);
-//   responseUsr = $.parseJSON(receivedObj.username);
-//   console.log(responseMsg);
-//   console.log(responseUsr);
-//    
-//    $('#chatAreaText').text('');
-//    for (var i = response.data.length - 1; i >= 0; i--) {
-//         var chatText = '<div>' + response.data[i].nutzername + ' : ' + response.data[i].text + '</div>';
-//         $('#chatAreaText').append(chatText);
-//    };
+    
+    var response = receivedObj.messages;
+    
+
+    
+    $('#chatAreaText').text('');
+    for (var i = response.length - 1; i >= 0; i--) {
+         var chatText = '<div>' + "<" + response[i].timestamp+ "> " + response[i].username + ' : ' + response[i].message + '</div>';
+         $('#chatAreaText').append(chatText);
+    };
 //    
 //    console.log(responseData[Object.keys(responseData)[0]]);
 //
@@ -302,7 +297,7 @@ function getChatText(chatRaum) {
 //        var height = $('#chatAreaText')[0].scrollHeight;
 //        sd.scrollTop(height);
 //    
-//ajaxCom.disconnect();
+    ajaxCom.disconnect();
 }
 	//Aufruf der AJAX methode
     

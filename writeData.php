@@ -1,4 +1,6 @@
 <?php
+include './classes/userClass.php';
+include './classes/messageClass.php';
 
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
@@ -37,17 +39,27 @@ function createFile($username, $ipAdress, $password) {
     } elseif (glob($filepath . $username . '*.txt')) {
         echo("Benutzer ist schon vorhanden.");
     } else {
+        
+        
         $datei = fopen($filepath . "$username$hstring$password.txt", "w");
-        fwrite($datei, "$ipAdress");
+        $user = new userClass ($username,$ipAdress);
+        fwrite($datei,serialize($user));
+        //fwrite($datei, "$ipAdress");
         fclose($datei);
     }
 }
 
 function writeChatData($username, $nachricht, $chatRaum) {
 
+    $message = new messageClass($nachricht,$username); 
     $filepath = "./chatRooms/$chatRaum/";
-    $hstring = "_";
-     file_put_contents($filepath . "$chatRaum.txt","$username\n"."$nachricht\n", FILE_APPEND); 
+    
+    $datei = fopen($filepath . "$chatRaum.txt", "a+");   // Datei öffnen
+    fwrite($datei, serialize($message)."\r\n");   // Daten schreiben, Zeilenumbruch
+    fclose($datei);                       
+
+//    $hstring = "_";
+//     file_put_contents($filepath . "$chatRaum.txt","$username\n"."$nachricht\n", FILE_APPEND); 
 }
 
 function countFileLines($file) {

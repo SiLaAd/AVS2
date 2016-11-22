@@ -1,22 +1,5 @@
-Lars
-1
-Lars
-2
-Lars
-3
-Lars
-4
-Lars
-5
-Lars
-6
-Lars
-7
-Lars
-8
-Lars
-9
-Lars
-10
-Lars
-11
+O:12:"messageClass":3:{s:7:"message";s:5:"Hallo";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 17:48:50";}
+O:12:"messageClass":3:{s:7:"message";s:10:"Hallo was ";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 17:48:54";}
+O:12:"messageClass":3:{s:7:"message";s:14:"Hallo was geht";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 17:48:58";}
+O:12:"messageClass":3:{s:7:"message";s:9:"Ihr pedos";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 18:02:46";}
+O:12:"messageClass":3:{s:7:"message";s:30:"man nennt ihn auch den Meister";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 18:05:35";}

@@ -2,6 +2,8 @@
 
 include './classes/userClass.php';
 include './classes/messageClass.php';
+ini_set('unserialize_callback_func', 'callback');
+
 //Auslesen der übertragenen POST-Daten
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
@@ -55,56 +57,63 @@ function requestData() {
 
     while ($file = readdir($path)) {
         if ($file != "." && $file != "..") {
-            $fileextensions = array(".", "txt");
-            $file2 = strtok($file, '_');
-            $userCon = new userClass($file2[1]);
-            $userCon->test();
-            $fileWoEx[] = str_replace($fileextensions, "", $file2);
-            $files[] = $file;
-        }
-    }
+            $tempString = fread(fopen($filepath . $file, 'r'), filesize($filepath . $file));
+            $fileWoEx[] = unserialize($tempString);
 
-    //Liest für jede Datei den Inhalt der Datei und speichert diesen in einem Array
-    foreach ($files as $file) {
-        $content[] = fread(fopen($filepath . $file, 'r'), filesize($filepath . $file));
+        }
     }
 
     //Rückgabe des Dateinamen und des Inhalts
     echo json_encode(array(
-        'files' => $fileWoEx,
-        'content' => $content
+        'files' => $fileWoEx
     ));
 }
 
 function requestChatData($chatRaum) {
     $filepath = "./chatRooms/$chatRaum/";
     $lines = array();
-    $messageArray = array();
     $fp = fopen($filepath . "$chatRaum.txt", 'r');
     $i=0;
 
-    $_content = file($filepath . "$chatRaum.txt");
-    $lineCount = count($_content);
-
-
-    $max10Line = 0;
-    if ($lineCount > 20) {
-        $max10Line = $lineCount - 20;
-    }
-
-    while ($max10Line < $lineCount - 1) {
-        $lines = file($filepath . "$chatRaum.txt");
-        $tempUser = $lines[$max10Line];
-        $tempMessage = $lines[$max10Line + 1];
-        $max10Line++;
-        $max10Line++;
-        $messageClass = new messageClass($tempMessage, $tempUser);
-        $messageArray[$i]=$messageClass->message;
-        $i++;
+    $content = file($filepath . "$chatRaum.txt");
+    //$anzahl = count($_content);
+    
+    foreach ($content as $mess){
+    $ob=unserialize($mess);
+    $messageArray[] = $ob;
+ 
     }
     
-    echo json_encode($messageArray[$i-1]);
-    fclose($fp);
+//    foreach ($messageArray as $mess){
+//    echo($mess ->message."\n");
+//    
+//    }
+
+   
+    echo json_encode(array(
+        'messages' =>$messageArray
+            ));
+//    $lineCount = count($_content);
+//
+//
+//    $max10Line = 0;
+//    if ($lineCount > 20) {
+//        $max10Line = $lineCount - 20;
+//    }
+//
+//    while ($max10Line < $lineCount - 1) {
+//        $lines = file($filepath . "$chatRaum.txt");
+//        $tempUser = $lines[$max10Line];
+//        $tempMessage = $lines[$max10Line + 1];
+//        $max10Line++;
+//        $max10Line++;
+//        $messageClass = new messageClass($tempMessage, $tempUser);
+//        $messageArray[$i]=$messageClass->message;
+//        $i++;
+//    }
+//    
+//    echo json_encode($messageArray[$i-1]);
+//    fclose($fp);
 }
 
 function testArray($array){
@@ -118,4 +127,10 @@ function testArray($array){
         echo str($json);
     }
 
+    
+ //callbalck für unserialize   
+ function callback($classname){
+        require_once $classname.".php";
+    }
+    
 }

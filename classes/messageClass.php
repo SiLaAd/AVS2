@@ -15,7 +15,10 @@ class messageClass {
     function __destruct() {
         print "zerstört!";
     }
-    function test() {
+    
+    
+    
+    public function test() {
         echo $this->username;
         echo $this->message;
         echo $this->timestamp;
