@@ -289,14 +289,12 @@ function getChatText(chatRaum) {
          var chatText = '<div>' + "<" + response[i].timestamp+ "> " + response[i].username + ' : ' + response[i].message + '</div>';
          $('#chatAreaText').append(chatText);
     };
-//    
-//    console.log(responseData[Object.keys(responseData)[0]]);
-//
-//        // scroll down chatarea
-//        var sd    = $('#chatAreaText');
-//        var height = $('#chatAreaText')[0].scrollHeight;
-//        sd.scrollTop(height);
-//    
+
+        // scroll down chatarea
+        var sd    = $('#chatAreaText');
+        var height = $('#chatAreaText')[0].scrollHeight;
+        sd.scrollTop(height);
+    
     ajaxCom.disconnect();
 }
 	//Aufruf der AJAX methode

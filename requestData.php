@@ -93,27 +93,7 @@ function requestChatData($chatRaum) {
     echo json_encode(array(
         'messages' =>$messageArray
             ));
-//    $lineCount = count($_content);
-//
-//
-//    $max10Line = 0;
-//    if ($lineCount > 20) {
-//        $max10Line = $lineCount - 20;
-//    }
-//
-//    while ($max10Line < $lineCount - 1) {
-//        $lines = file($filepath . "$chatRaum.txt");
-//        $tempUser = $lines[$max10Line];
-//        $tempMessage = $lines[$max10Line + 1];
-//        $max10Line++;
-//        $max10Line++;
-//        $messageClass = new messageClass($tempMessage, $tempUser);
-//        $messageArray[$i]=$messageClass->message;
-//        $i++;
-//    }
-//    
-//    echo json_encode($messageArray[$i-1]);
-//    fclose($fp);
+
 }
 
 function testArray($array){
