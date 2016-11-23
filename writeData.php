@@ -1,6 +1,7 @@
 <?php
 include './classes/userClass.php';
 include './classes/messageClass.php';
+include './helperFunctions.php';
 
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
@@ -77,11 +78,16 @@ function createFile($username, $ipAdress, $password,$pcName) {
 }
 
 function writeChatData($username, $nachricht, $chatRaum) {
-
+    $semaphore = initSema();
+    while (!$semaphore) {
+            echo "Failed on sem_get().\n";
+        }
+    sem_acquire($semaphore);
     $message = new messageClass($nachricht,$username); 
     $filepath = "./chatRooms/$chatRaum/";
     
     $datei = fopen($filepath . "$chatRaum.txt", "a+");   // Datei öffnen
     fwrite($datei, serialize($message)."\r\n");   // Daten schreiben, Zeilenumbruch
-    fclose($datei);                       
+    fclose($datei);   
+    sem_release($semaphore);
 }

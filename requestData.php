@@ -2,6 +2,8 @@
 
 include './classes/userClass.php';
 include './classes/messageClass.php';
+include './helperFunctions.php';
+
 ini_set('unserialize_callback_func', 'callback');
 
 //Auslesen der übertragenen POST-Daten
@@ -69,10 +71,15 @@ function requestData() {
 }
 
 function requestChatData($chatRaum) {
+        $semaphore = initSema();
+        while (!$semaphore) {
+            echo "Failed on sem_get().\n";
+        }
+        sem_acquire($semaphore);
+    
     $filepath = "./chatRooms/$chatRaum/";
     $lines = array();
     $fp = fopen($filepath . "$chatRaum.txt", 'r');
-    $i=0;
 
     $content = file($filepath . "$chatRaum.txt");
 
@@ -82,7 +89,7 @@ function requestChatData($chatRaum) {
  
     }
     
-
+    sem_release($semaphore);
    
     echo json_encode(array(
         'messages' =>$messageArray

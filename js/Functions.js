@@ -46,6 +46,7 @@ function login() {
         console.log("User nicht für Chat registriert!")
     }
     ajaxCom.disconnect();
+    $('#chatAreaText').text('');
 }
 
 function logout() {
@@ -298,7 +299,6 @@ function getChatText(chatRaum) {
         // scroll down chatarea
         var sd    = $('#chatAreaText');
         var height = $('#chatAreaText')[0].scrollHeight;
-        sd.scrollTop(height);
     
     ajaxCom.disconnect();
 }
@@ -316,3 +316,4 @@ function convertTimestampHMS(timestamp){
     var time = hour + ':' +min+':'+sec;
     return time;   
 }
+
