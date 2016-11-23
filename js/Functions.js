@@ -69,7 +69,11 @@ function sendMessage() {
         "flag": flag
     }
     );
+    
+    
     ajaxCom.disconnect();
+
+    $('#myInputText').val('');
 }
 
 /*
@@ -282,11 +286,10 @@ function getChatText(chatRaum) {
     
     var response = receivedObj.messages;
     
-
     
     $('#chatAreaText').text('');
     for (var i = response.length - 1; i >= 0; i--) {
-         var chatText = '<div>' + "<" + response[i].timestamp+ "> " + response[i].username + ' : ' + response[i].message + '</div>';
+         var chatText = '<div>' + "<" + convertTimestampHMS(response[i].timestamp)+ "> " + response[i].username + ' : ' + response[i].message + '</div>';
          $('#chatAreaText').append(chatText);
     };
 
@@ -297,5 +300,17 @@ function getChatText(chatRaum) {
     
     ajaxCom.disconnect();
 }
-	//Aufruf der AJAX methode
+
     
+function convertTimestampHMS(timestamp){
+    var a = new Date(timestamp);
+    var hour= a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    if (hour <10){hour = '0'+hour};
+    if (min <10){min = '0'+min};  
+    if (sec <10){sec = '0'+sec};
+    
+    var time = hour + ':' +min+':'+sec;
+    return time;   
+}

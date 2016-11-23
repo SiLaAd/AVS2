@@ -59,7 +59,6 @@ function requestData() {
         if ($file != "." && $file != "..") {
             $tempString = fread(fopen($filepath . $file, 'r'), filesize($filepath . $file));
             $fileWoEx[] = unserialize($tempString);
-
         }
     }
 
@@ -76,18 +75,13 @@ function requestChatData($chatRaum) {
     $i=0;
 
     $content = file($filepath . "$chatRaum.txt");
-    //$anzahl = count($_content);
-    
+
     foreach ($content as $mess){
     $ob=unserialize($mess);
     $messageArray[] = $ob;
  
     }
     
-//    foreach ($messageArray as $mess){
-//    echo($mess ->message."\n");
-//    
-//    }
 
    
     echo json_encode(array(

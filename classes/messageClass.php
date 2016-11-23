@@ -13,7 +13,6 @@ class messageClass {
     }
 
     function __destruct() {
-        print "zerstört!";
     }
     
     

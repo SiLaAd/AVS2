@@ -1,5 +1,16 @@
-O:12:"messageClass":3:{s:7:"message";s:5:"Hallo";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 17:48:50";}
-O:12:"messageClass":3:{s:7:"message";s:10:"Hallo was ";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 17:48:54";}
-O:12:"messageClass":3:{s:7:"message";s:14:"Hallo was geht";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 17:48:58";}
-O:12:"messageClass":3:{s:7:"message";s:9:"Ihr pedos";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 18:02:46";}
-O:12:"messageClass":3:{s:7:"message";s:30:"man nennt ihn auch den Meister";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-22 18:05:35";}
+O:12:"messageClass":3:{s:7:"message";s:3:"asd";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 09:50:45";}
+O:12:"messageClass":3:{s:7:"message";s:29:"keine Ahnung was hier los war";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 09:51:08";}
+O:12:"messageClass":3:{s:7:"message";s:5:"hallo";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 09:51:54";}
+O:12:"messageClass":3:{s:7:"message";s:8:"asdsadsa";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 09:54:59";}
+O:12:"messageClass":3:{s:7:"message";s:4:"adsa";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 09:55:18";}
+O:12:"messageClass":3:{s:7:"message";s:6:"asdasd";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 09:56:34";}
+O:12:"messageClass":3:{s:7:"message";s:11:"asdsadwqeqw";s:8:"username";s:4:"Lars";s:9:"timestamp";s:19:"2016-11-23 09:57:25";}
+O:12:"messageClass":3:{s:7:"message";s:6:"cbwetr";s:8:"username";s:6:"Adrian";s:9:"timestamp";s:19:"2016-11-23 09:58:24";}
+O:12:"messageClass":3:{s:7:"message";s:7:"sdfasdf";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:01:13";}
+O:12:"messageClass":3:{s:7:"message";s:5:"qerte";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:01:34";}
+O:12:"messageClass":3:{s:7:"message";s:12:"asdfreqwerqw";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:01:49";}
+O:12:"messageClass":3:{s:7:"message";s:0:"";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:01:54";}
+O:12:"messageClass":3:{s:7:"message";s:6:"asdasd";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:02:41";}
+O:12:"messageClass":3:{s:7:"message";s:6:"qrtert";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:02:56";}
+O:12:"messageClass":3:{s:7:"message";s:9:"asdasdwqe";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:03:19";}
+O:12:"messageClass":3:{s:7:"message";s:7:"qwertsf";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:03:35";}

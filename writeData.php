@@ -57,17 +57,4 @@ function writeChatData($username, $nachricht, $chatRaum) {
     $datei = fopen($filepath . "$chatRaum.txt", "a+");   // Datei öffnen
     fwrite($datei, serialize($message)."\r\n");   // Daten schreiben, Zeilenumbruch
     fclose($datei);                       
-
-//    $hstring = "_";
-//     file_put_contents($filepath . "$chatRaum.txt","$username\n"."$nachricht\n", FILE_APPEND); 
-}
-
-function countFileLines($file) {
-    $linecount = 0;
-    $handle = fopen($file, "r");
-    while (!feof($handle)) {
-        $line = fgets($handle);
-        $linecount++;
-    }
-    return $linecount;
 }
