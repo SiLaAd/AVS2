@@ -23,15 +23,33 @@ if (isset($_POST['flag'])) {
 } else {
     $flag = 'flag not delivered';
 }
+if (isset($_POST['password'])) {
+    $password = $_POST['password'];
+} else {
+    $password = '';
+}
+if (isset($_POST['ipAdress'])) {
+    $ipAdress = $_POST['ipAdress'];
+} else {
+    $ipAdress = '';
+}
+if (isset($_POST['pcName'])) {
+    $pcName = $_POST['pcName'];
+} else {
+    $pcName = '';
+}
 
 switch ($flag) {
     case'sendMessage':
         writeChatData($username, $textMessage, $chatRaum);
         break;
+    case 'addUser':
+        createFile($username, $ipAdress, $password,$pcName);
+        break;        
     default:
 }
 
-function createFile($username, $ipAdress, $password) {
+function createFile($username, $ipAdress, $password,$pcName) {
     $filepath = './user/';
     $hstring = "_";
     if (file_exists($filepath . "$username$hstring$password.txt")) {
@@ -47,6 +65,15 @@ function createFile($username, $ipAdress, $password) {
         //fwrite($datei, "$ipAdress");
         fclose($datei);
     }
+    
+    echo json_encode(array(
+        'username' => $username,
+        'password' => $password,
+        'ipAdress' => $ipAdress,
+        'pcName' => $pcName,
+    ));
+    
+    
 }
 
 function writeChatData($username, $nachricht, $chatRaum) {

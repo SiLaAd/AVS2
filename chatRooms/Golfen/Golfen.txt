@@ -14,3 +14,4 @@ O:12:"messageClass":3:{s:7:"message";s:6:"asdasd";s:8:"username";s:5:"Simon";s:9
 O:12:"messageClass":3:{s:7:"message";s:6:"qrtert";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:02:56";}
 O:12:"messageClass":3:{s:7:"message";s:9:"asdasdwqe";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:03:19";}
 O:12:"messageClass":3:{s:7:"message";s:7:"qwertsf";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:03:35";}
+O:12:"messageClass":3:{s:7:"message";s:4:"asda";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 10:38:04";}

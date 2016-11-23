@@ -98,8 +98,9 @@ function registerData() {
     var password = document.getElementById("password").value;
     var pcName = "Client" + "_" + Math.round(Math.random() * (10000 - 1) + 10000);
     var ipAdress = generateRanIp();
+    var flag = "addUser";
 
-    var URL = "./sendData.php";
+    var URL = "./writeData.php";
     var ajaxCom = new Ajax(URL, receive);
     // expected components (checked in receive())
     receivedObj = {"username": 0, "password": 0, "ipAdress": 0, "pcName": 0};
@@ -107,7 +108,8 @@ function registerData() {
         "username": username,
         "password": password,
         "ipAdress": ipAdress,
-        "pcName": pcName
+        "pcName": pcName,
+        "flag" : flag
     }
     );
     /*
