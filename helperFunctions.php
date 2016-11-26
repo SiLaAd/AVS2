@@ -45,3 +45,10 @@ function checkPerm($username, $password, $flag) {
     ));
     return $returnVar;
 }
+function initSema() {
+        $key = 666;
+        $max = 1;
+        $permissions = 0666;
+        $autoRelease = 1;
+        return $semaphore = sem_get($key, $max, $permissions, $autoRelease);
+}

@@ -1,6 +1,12 @@
 <?php
 
-// Auslesen der übertragenen POST-Daten
+include './classes/userClass.php';
+include './classes/messageClass.php';
+include './helperFunctions.php';
+
+ini_set('unserialize_callback_func', 'callback');
+
+//Auslesen der übertragenen POST-Daten
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
 } else {
@@ -21,8 +27,9 @@ if (isset($_POST['flag'])) {
 if (isset($_POST['chatRaum'])) {
     $chatRaum = $_POST['chatRaum'];
 } else {
-    $flag = 'chatRaum not delivered';
+    $chatRaum = 'chatRaum not delivered';
 }
+
 
 switch ($flag) {
     case'chatData':
@@ -32,11 +39,11 @@ switch ($flag) {
         $filepath = "./user/";
         $hstring = "_";
 //prüfen ob der Benutzer berechtigt ist die Daten abzurufen (User vorhanden?)
-if (file_exists($filepath . "$username$hstring$password.txt")) {
-    requestData();
-} else {
-    echo ("Fehler beim Abrufen der Daten. Sie sind nicht berechtigt.");
-}
+        if (file_exists($filepath . "$username$hstring$password.txt")) {
+            requestData();
+        } else {
+            echo ("Fehler beim Abrufen der Daten. Sie sind nicht berechtigt.");
+        }
     default:
 }
 
@@ -45,76 +52,66 @@ if (file_exists($filepath . "$username$hstring$password.txt")) {
 /*
  * Liest das "user" Verzeichnis und gibt die Dateinamen und deren Inhalt zurück
  */
+
 function requestData() {
     $filepath = "./user/";
     $path = opendir($filepath);
 
     while ($file = readdir($path)) {
         if ($file != "." && $file != "..") {
-            $fileextensions = array(".", "txt");
-            $file2=strtok($file, '_');
-            $fileWoEx[] = str_replace($fileextensions, "", $file2);
-            $files[] = $file;
+            $tempString = fread(fopen($filepath . $file, 'r'), filesize($filepath . $file));
+            $fileWoEx[] = unserialize($tempString);
         }
-    }
-
-    //Liest für jede Datei den Inhalt der Datei und speichert diesen in einem Array
-    foreach ($files as $file) {
-        $content[] = fread(fopen($filepath . $file, 'r'), filesize($filepath . $file));
     }
 
     //Rückgabe des Dateinamen und des Inhalts
     echo json_encode(array(
-        'files' => $fileWoEx,
-        'content' => $content
+        'files' => $fileWoEx
     ));
+}
 
+function requestChatData($chatRaum) {
+        $semaphore = initSema();
+        while (!$semaphore) {
+            echo "Failed on sem_get().\n";
+        }
+        sem_acquire($semaphore);
+    
+    $filepath = "./chatRooms/$chatRaum/";
+    $lines = array();
+    $fp = fopen($filepath . "$chatRaum.txt", 'r');
+
+    $content = file($filepath . "$chatRaum.txt");
+
+    foreach ($content as $mess){
+    $ob=unserialize($mess);
+    $messageArray[] = $ob;
+ 
     }
     
+    sem_release($semaphore);
+   
+    echo json_encode(array(
+        'messages' =>$messageArray
+            ));
+
+}
+
+function testArray($array){
+    $arrayCount = count($array);
+    $j=0;
+    $json = "";
     
-    function requestChatData($chatRaum){
-        
-    $filepath = "./chatRooms/$chatRaum/";
-    $jsonMessage = "";
-    $i=1;
-    $lines=array();
-    $fp=fopen($filepath . "$chatRaum.txt", 'r');
-    while (!feof($fp))
-    {
-    $line=fgets($fp);
+    while($j<$arrayCount){
+        $json = json_encode($array[$j]);
+        $j++;
+        echo str($json);
+    }
 
-    //process line however you like
-    $line=trim($line);
-
-    //add to array
-    $lines[]=$line;
+    
+ //callbalck für unserialize   
+ function callback($classname){
+        require_once $classname.".php";
+    }
     
 }
-fclose($fp);
-var_dump($lines[13]);
-    //$filearray = fread(fopen($filepath . "$chatRaum.txt","r+"),filesize($filepath . "$chatRaum.txt"));
-//    $handle = fopen($filepath . "$chatRaum.txt","r+");
-//            if ($handle) {
-//    while (($line = fgets($handle)) !== false) {
-//        $array[] = $line[$i];
-//        $i++;
-//        
-//    }
-//    foreach ($array as $key => $val) {
-//        var_dump($val);
-//    }
-//    fclose($handle);
-//} else {
-    // error opening the file.
-} 
-    //$lastfifteenlines = array_slice($filearray,-11,11);
-        //$file[] = 
-        //for ($i = max(0, count($lastfifteenlines)); $i < count($lastfifteenlines); $i++) {
-//        foreach ($filearray as $lf){
-//            $jsonMessage = $jsonMessage . $lf;
-//        }
-        
-
-        
-       // }
-        

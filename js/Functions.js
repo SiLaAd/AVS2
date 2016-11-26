@@ -46,6 +46,7 @@ function login() {
         console.log("User nicht für Chat registriert!")
     }
     ajaxCom.disconnect();
+    $('#chatAreaText').text('');
 }
 
 function logout() {
@@ -69,7 +70,11 @@ function sendMessage() {
         "flag": flag
     }
     );
+    
+    
     ajaxCom.disconnect();
+
+    $('#myInputText').val('');
 }
 
 /*
@@ -94,8 +99,9 @@ function registerData() {
     var password = document.getElementById("password").value;
     var pcName = "Client" + "_" + Math.round(Math.random() * (10000 - 1) + 10000);
     var ipAdress = generateRanIp();
+    var flag = "addUser";
 
-    var URL = "./sendData.php";
+    var URL = "./writeData.php";
     var ajaxCom = new Ajax(URL, receive);
     // expected components (checked in receive())
     receivedObj = {"username": 0, "password": 0, "ipAdress": 0, "pcName": 0};
@@ -103,7 +109,8 @@ function registerData() {
         "username": username,
         "password": password,
         "ipAdress": ipAdress,
-        "pcName": pcName
+        "pcName": pcName,
+        "flag" : flag
     }
     );
     /*
@@ -127,7 +134,7 @@ function queryData(table_id) {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     // expected components (checked in receive())
-    receivedObj = {"files": 0, "content": 0};
+    receivedObj = {"files": 0};
     ajaxCom.send({
         "username": username,
         "password": password,
@@ -141,30 +148,28 @@ function queryData(table_id) {
     //write2console(receivedObj.content);
 
 
-
-    var ipadresses = receivedObj.content;
     var names = receivedObj.files;
 
     ajaxCom.disconnect();
 
-    for (var i in ipadresses) {
+    for (var i in names) {
         var table = document.getElementById(table_id);
         var lastRow = numRows(table_id);
         var rowNum = lastRow + 1;
         var row = table.insertRow(lastRow);
 
         var cell_1 = row.insertCell(0);
-        var textNode = document.createTextNode(names[i]);
+        var textNode = document.createTextNode(names[i].name);
         cell_1.appendChild(textNode);
 
         var cell_2 = row.insertCell(1);
-        var textNode = document.createTextNode(ipadresses[i]);
+        var textNode = document.createTextNode(names[i].ip);
         cell_2.appendChild(textNode);
 
         var cell_3 = row.insertCell(2);
         var myButton = document.createElement("button");
         var Text = document.createTextNode("Löschen");
-        myButton.id = names[i];
+        myButton.id = names[i].name;
         myButton.appendChild(Text);
         myButton.setAttribute('onclick', 'deleteRow(this)');
         cell_3.appendChild(myButton);
@@ -275,8 +280,6 @@ function getChatText(chatRaum) {
     var URL = "./requestData.php";
     var flag = "chatData";
     var ajaxCom = new Ajax(URL, receive);
-    var responseData;
-
     // expected components (checked in receive())
     receivedObj = {"messages": 0};
     ajaxCom.send({
@@ -284,28 +287,33 @@ function getChatText(chatRaum) {
         "flag": flag
     });
     
-   //responseData = $.parseJSON(receivedObj.messages);
-    //responseData = $.parseJSON(receivedObj.messages);
-    //$('#chatAreaText').text('');
-//    for (var i = response.data.length - 1; i >= 0; i--) {
-//         var chatText = '<div>' + response.data[i].nutzername + ' : ' + response.data[i].text + '</div>';
-//         $('#chatAreaText').append(chatText);
-//    };
-    
-   // console.log(responseData[Object.keys(responseData)[0]]);
+    var response = receivedObj.messages;
     
     
+    $('#chatAreaText').text('');
+    for (var i = response.length - 1; i >= 0; i--) {
+         var chatText = '<div>' + "<" + convertTimestampHMS(response[i].timestamp)+ "> " + response[i].username + ' : ' + response[i].message + '</div>';
+         $('#chatAreaText').append(chatText);
+    };
+
+        // scroll down chatarea
+        var sd    = $('#chatAreaText');
+        var height = $('#chatAreaText')[0].scrollHeight;
     
-    
-//        
-//        
-//
-//        // scroll down chatarea
-//        var sd    = $('#chatAreaText');
-//        var height = $('#chatAreaText')[0].scrollHeight;
-//        sd.scrollTop(height);
-    
-ajaxCom.disconnect();
+    ajaxCom.disconnect();
 }
-	//Aufruf der AJAX methode
+
     
+function convertTimestampHMS(timestamp){
+    var a = new Date(timestamp);
+    var hour= a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    if (hour <10){hour = '0'+hour};
+    if (min <10){min = '0'+min};  
+    if (sec <10){sec = '0'+sec};
+    
+    var time = hour + ':' +min+':'+sec;
+    return time;   
+}
+
