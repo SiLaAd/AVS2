@@ -25,10 +25,11 @@ $(document).ready(function () {
 function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
+    var chatroomId = $('#chatroomSelector').val();
     var URL = "./helperFunctions.php";
     var ajaxCom = new Ajax(URL, receive);
     var flag = "login";
-
+    
     // expected components (checked in receive())
     receivedObj = {"returnVar": 0};
     ajaxCom.send({
@@ -47,6 +48,7 @@ function login() {
     }
     ajaxCom.disconnect();
     $('#chatAreaText').text('');
+        getChatText(chatroomId);
 }
 
 function logout() {
@@ -289,11 +291,12 @@ function getChatText(chatRaum) {
     
     var response = receivedObj.messages;
     
-    
+    console.log(response[1].timestamp);
     $('#chatAreaText').text('');
     for (var i = response.length - 1; i >= 0; i--) {
-         var chatText = '<div>' + "<" + convertTimestampHMS(response[i].timestamp)+ "> " + response[i].username + ' : ' + response[i].message + '</div>';
+         var chatText = '<div>' + "" + (response[i].timestamp)+ " " + response[i].username + ' : ' + response[i].message + '</div>';
          $('#chatAreaText').append(chatText);
+         
     };
 
         // scroll down chatarea

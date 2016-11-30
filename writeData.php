@@ -29,10 +29,12 @@ if (isset($_POST['password'])) {
 } else {
     $password = '';
 }
-if (isset($_POST['ipAdress'])) {
-    $ipAdress = $_POST['ipAdress'];
+
+
+if ($_SERVER['REMOTE_ADDR']=='::1') {
+    $ipAdress =  getHostByName(getHostName());
 } else {
-    $ipAdress = '';
+    $ipAdress = $_SERVER['REMOTE_ADDR'];
 }
 if (isset($_POST['pcName'])) {
     $pcName = $_POST['pcName'];
