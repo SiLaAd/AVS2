@@ -60,8 +60,7 @@ function createFile($username, $ipAdress, $password,$pcName) {
     } elseif (glob($filepath . $username . '*.txt')) {
         echo("Benutzer ist schon vorhanden.");
     } else {
-        
-        
+                
         $datei = fopen($filepath . "$username$hstring$password.txt", "w");
         $user = new userClass ($username,$ipAdress);
         fwrite($datei,serialize($user));
@@ -87,9 +86,16 @@ function writeChatData($username, $nachricht, $chatRaum) {
     sem_acquire($semaphore);
     $message = new messageClass($nachricht,$username); 
     $filepath = "./chatRooms/$chatRaum/";
-    
     $datei = fopen($filepath . "$chatRaum.txt", "a+");   // Datei öffnen
-    fwrite($datei, serialize($message)."\r\n");   // Daten schreiben, Zeilenumbruch
+    $content = file($filepath . "$chatRaum.txt");
+
+    $messageArray=unserialize(urldecode($content[0]));
+
+    $messageArray[]=$message;
+
+   
+    file_put_contents($filepath . "$chatRaum.txt","");
+    fwrite($datei, urlencode(serialize($messageArray)));   // Daten schreiben, Zeilenumbruch
     fclose($datei);   
     sem_release($semaphore);
 }

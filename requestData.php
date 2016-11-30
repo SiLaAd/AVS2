@@ -78,16 +78,11 @@ function requestChatData($chatRaum) {
         sem_acquire($semaphore);
     
     $filepath = "./chatRooms/$chatRaum/";
-    $lines = array();
     $fp = fopen($filepath . "$chatRaum.txt", 'r');
 
     $content = file($filepath . "$chatRaum.txt");
 
-    foreach ($content as $mess){
-    $ob=unserialize($mess);
-    $messageArray[] = $ob;
- 
-    }
+    $messageArray=unserialize(urldecode($content[0]));
     
     sem_release($semaphore);
    
