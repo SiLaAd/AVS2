@@ -1,1 +1,2 @@
 O:12:"messageClass":3:{s:7:"message";s:5:"Hallo";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-23 11:21:33";}
+O:12:"messageClass":3:{s:7:"message";s:8:"DRohnnen";s:8:"username";s:7:"Gallium";s:9:"timestamp";s:19:"2016-11-30 11:58:55";}

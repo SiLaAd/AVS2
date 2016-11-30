@@ -291,7 +291,6 @@ function getChatText(chatRaum) {
     
     var response = receivedObj.messages;
     
-    console.log(response[1].timestamp);
     $('#chatAreaText').text('');
     for (var i = response.length - 1; i >= 0; i--) {
          var chatText = '<div>' + "" + (response[i].timestamp)+ " " + response[i].username + ' : ' + response[i].message + '</div>';

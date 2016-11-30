@@ -1,9 +1,1 @@
-O:12:"messageClass":3:{s:7:"message";s:6:"erster";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-30 11:15:45";}
-O:12:"messageClass":3:{s:7:"message";s:7:"zwoiter";s:8:"username";s:8:"Simon123";s:9:"timestamp";s:19:"2016-11-30 11:16:09";}
-O:12:"messageClass":3:{s:7:"message";s:4:"test";s:8:"username";s:3:"asd";s:9:"timestamp";s:19:"2016-11-30 11:18:23";}
-O:12:"messageClass":3:{s:7:"message";s:4:"test";s:8:"username";s:15:"asdqewqwrwqrwqr";s:9:"timestamp";s:19:"2016-11-30 11:25:23";}
-O:12:"messageClass":3:{s:7:"message";s:3:"ghd";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-30 11:26:11";}
-O:12:"messageClass":3:{s:7:"message";s:3:"adf";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-30 11:28:22";}
-O:12:"messageClass":3:{s:7:"message";s:6:"ökljp";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-30 11:31:32";}
-O:12:"messageClass":3:{s:7:"message";s:5:"ghfgf";s:8:"username";s:5:"Simon";s:9:"timestamp";s:19:"2016-11-30 11:32:53";}
-O:12:"messageClass":3:{s:7:"message";s:4:"test";s:8:"username";s:4:"Lars";s:9:"timestamp";s:19:"2016-11-30 11:48:05";}
+O:12:"messageClass":3:{s:7:"message";s:6:"asdsad";s:8:"username";s:4:"VM04";s:9:"timestamp";s:19:"2016-11-30 12:05:26";}
