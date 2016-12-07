@@ -1,2 +1,0 @@
-O:12:"messageClass":3:{s:7:"message";s:28:"Dies ist die erste Nachricht";s:8:"username";s:7:"Gallium";s:9:"timestamp";s:19:"2016-11-30 12:01:57";}
-O:12:"messageClass":3:{s:7:"message";s:2:"Ja";s:8:"username";s:9:"Aluminium";s:9:"timestamp";s:19:"2016-11-30 12:03:09";}
